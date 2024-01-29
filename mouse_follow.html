@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse-follow</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .main{
+            height: 100vh;
+            width: 100%;
+            border: 1px solid #000;
+            background-color: rgba(0, 0, 255, 0.547);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;     
+            position: relative;
+            overflow: hidden;    
+        }
+
+        .parent{
+            height: 20vh;
+            width: 30%;
+            border: 1px solid #000;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: blueviolet;
+            
+            /* position: relative; */
+
+        }
+        .parent :nth-child(1){
+            height: 30px;
+            width: 30px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            background-color: palevioletred;
+            
+        }
+        .parent :nth-child(2){
+            height: 60px;
+            width: 60px;
+            border: 1px solid #000;
+            background-color: palevioletred;
+            border-radius: 50%;
+        }
+        .parent :nth-child(3){
+            height: 80px;
+            width: 80px;
+            background-color: palevioletred;
+            border: 1px solid #000;
+            border-radius: 50%;
+        }
+        .parent :nth-child(4){
+            height: 100px;
+            width: 100px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            background-color: palevioletred;
+        }
+        .move{
+            height: 40px;
+            width: 40px;
+            border: 1px solid rgba(0, 255, 255, 0.293);
+            border-radius: 50%;
+            position: absolute;
+            background-color: aqua;
+            filter:hue-rotate(100);
+            transition: all 0.01s ;
+            /* display: none; */
+        }
+        h1{
+            cursor: pointer;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>MOUSE&DRAW</h1>
+        <div class="parent">
+            <div class="one"></div>
+            <div class="one"></div>
+            <div class="one"></div>
+            <div class="one"></div>
+        </div>
+        <!-- <div class="mover"></div> -->
+    </div>
+    <script>
+        let main = document.querySelector('.main')
+        let parent = document.querySelector('.parent')
+        let  circle= document.querySelectorAll('.one')
+        let  head = document.getElementsByTagName('h1')[0]
+        console.log(head);
+       
+        
+
+        let move = document.createElement('div')
+        move.classList.add('move')
+        main.append(move)
+        console.log(move);
+        // move.style.display = "none"
+
+      
+        document.addEventListener("mousemove",function(t){
+            console.log(move);
+
+            let x = t.clientX
+            console.log(x);
+            let y = t.clientY
+            console.log(y);
+    
+            move.style.left = `${x+5}px`
+            move.style.top = `${y-5}px`
+
+
+
+            circle[0].addEventListener("click",function(){
+
+                move.style.height = "30px"
+                move.style.width = "30px"
+            })
+
+            circle[1].addEventListener("click",function(){
+
+                move.style.height = "60px"
+                move.style.width = "60px"
+            })
+
+            circle[2].addEventListener("click",function(){
+
+                move.style.height = "80px"
+                move.style.width = "80px"
+            })
+
+            circle[3].addEventListener("click",function(){
+
+                move.style.height = "90px"
+                move.style.width = "90px"
+            
+            })
+
+
+            head.addEventListener("mouseenter",function(){
+
+                move.style.height = "130px"
+                move.style.width = "130px"
+                move.style.opacity = "0.8"
+
+                // console.log(head);
+            })
+        
+           
+            
+        
+        
+        
+        
+        
+        })
+    
+
+
+
+
+
+    </script>
+
+
+</body>
+</html>
